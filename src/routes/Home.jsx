@@ -6,47 +6,47 @@ import Search from '../components/Search';
 function Home() {
 
   let produtos = [{
-    "id": 1,
+    "key": 1,
     "name": "Air pod",
     "price": 144.99,
     'image': './assets/airpod' 
   }, {
-    "id": 2,
+    "key": 2,
     "name": "Yellow Phone",
     "price": 75.00,
     'image': './assets/phone.jpg'
   }, {
-    "id": 3,
+    "key": 3,
     "name": "Camera",
     "price": 749.99,
     'image': './assets/photo'
   }, {
-    "id": 4,
+    "key": 4,
     "name": "Devpulse",
     "price": 4.99,
     'image': './assets/airpod'
   }, {
-    "id": 5,
+    "key": 5,
     "name": "Linklinks",
     "price": 14.99,
     'image': '../assets/phone'
   }, {
-    "id": 6,
+    "key": 6,
     "name": "Linklinks",
     "price": 14.99,
     'image': '../assets/photo'
   }, {
-    "id": 7,
+    "key": 7,
     "name": "Devpulse",
     "price": 4.99,
     'image': './assets/photo'
   }, {
-    "id": 8,
+    "key": 8,
     "name": "Linklinks",
     "price": 14.99,
     'image': '../assets/photo'
   }, {
-    "id": 9,
+    "key": 9,
     "name": "Linklinks",
     "price": 14.99,
     'image': '../assets/photo'
