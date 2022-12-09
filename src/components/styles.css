@@ -1,7 +1,7 @@
 .searchbar {
     display: flex;
     margin-bottom: auto;
-    margin-top: auto;
+    margin-top: 1.5rem;
     height: 30px;
     background: #1f97c2;
     border-radius: 20px;
@@ -36,11 +36,20 @@
 
 .cardContainer {
   width: 20rem;
-  margin-top: 2rem;
-  margin-left: 2rem ;
+  margin-top: 4rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+  grid: 1
 }
 
 .center {
   display: block;
   margin: 0 auto;
+}
+
+.cardImg {
+  width: 15rem;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  margin-top: 1rem
 }

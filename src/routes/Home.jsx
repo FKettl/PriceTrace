@@ -1,9 +1,9 @@
-import './styles.css'
-import NavBarComponent from './components/NavBarComponent';
-import ItemCard from './components/ItemCard';
-import Search from './components/Search';
+import NavBarComponent from '../components/NavBarComponent';
+import ItemCard from '../components/ItemCard';
+import Search from '../components/Search';
 
-function App() {
+
+function Home() {
 
   let produtos = [{
     "id": 1,
@@ -56,7 +56,6 @@ function App() {
 
   return (
     <div className='flex flex-col'>
-      <NavBarComponent />
       <div className='text-7xl m-auto pt-4 pb-4'> Procure as melhores ofertas </div>
       <Search />
       <div className='grid grid-cols-4'>
@@ -68,4 +67,4 @@ function App() {
   )
 }
 
-export default App
+export default Home

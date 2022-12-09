@@ -20,11 +20,11 @@ function ItemCard (props) {
         <Card className='cardContainer'>
             
             <Card.Body>
+                <Card.Img className='cardImg' src={props.image} />
+                <div style={{textAlign: 'center', marginTop: '1rem'}}>
                 <Card.Title>{props.name}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{props.price}</Card.Subtitle>
-                <Card.Img variant="bottom" src={props.image} />
-                <div style={{textAlign: 'center'}}>
-                <Button onClick={showModal}>Veja mais</Button>
+                <Button style={{marginTop: '0.5rem', marginBottom: '0.5rem', backgroundColor: '#1f97c2'}} onClick={showModal}>Veja mais</Button>
                 </div>
             </Card.Body>
             {isOpen && <ItemModal name={props.name} price={props.price} closeModal={closeModal} isOpen={isOpen} />}

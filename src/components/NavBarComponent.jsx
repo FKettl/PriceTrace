@@ -1,9 +1,8 @@
 import './styles.css'
 import { Navbar, Nav } from 'react-bootstrap';
-import Search from './Search';
+import { Outlet, Link } from "react-router-dom";
 
-
-function NavBarComponent() {
+function NavBarComponent(props) {
   return (
     <Navbar
       collapseOnSelect
@@ -16,13 +15,12 @@ function NavBarComponent() {
       <Navbar.Toggle aria-controls="responsive-navbar-na" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="align-items-end px-3">
-          <Nav.Link>Home</Nav.Link>
-          <Nav.Link>Products</Nav.Link>
+          <Nav.Link href={`/home`}>Home</Nav.Link>
         </Nav>
         <Nav className="mr-auto align-items-end px-3">
         </Nav>
         <Nav className="ml-auto align-items-end px-3">
-          <Nav.Link className="pl-4">Login</Nav.Link>
+          <Link onClick={props.homeNeeded} to={`login`} className="pl-4">Login</Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
