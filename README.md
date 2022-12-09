@@ -2,7 +2,11 @@
 Projeto Final da matéria optativa de Blockchain
 
 ## Building
-Para rodar o front-end cole no terminal:
+Instale as dependências com:
+```bash
+npm install
+```
+Rode o front-end com:
 ```bash
 npm run dev
 ```
