@@ -9,22 +9,22 @@ function App() {
     "id": 1,
     "name": "Air pod",
     "price": 144.99,
-    'image': '../assets/airpod' 
+    'image': './assets/airpod' 
   }, {
     "id": 2,
     "name": "Yellow Phone",
     "price": 75.00,
-    'image': '../assets/phone'
+    'image': './assets/phone.jpg'
   }, {
     "id": 3,
     "name": "Camera",
     "price": 749.99,
-    'image': '../assets/photo'
+    'image': './assets/photo'
   }, {
     "id": 4,
     "name": "Devpulse",
     "price": 4.99,
-    'image': '../assets/airpod'
+    'image': './assets/airpod'
   }, {
     "id": 5,
     "name": "Linklinks",
@@ -39,7 +39,7 @@ function App() {
     "id": 7,
     "name": "Devpulse",
     "price": 4.99,
-    'image': '../assets/photo'
+    'image': './assets/photo'
   }, {
     "id": 8,
     "name": "Linklinks",

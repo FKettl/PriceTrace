@@ -33,4 +33,14 @@
   opacity: 0.8;
   cursor: pointer;
 }
-  
+
+.cardContainer {
+  width: 20rem;
+  margin-top: 2rem;
+  margin-left: 2rem ;
+}
+
+.center {
+  display: block;
+  margin: 0 auto;
+}
