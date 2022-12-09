@@ -1,16 +1,16 @@
-import { useNavigate } from 'react-router-dom'
+
 import { useState } from "react";
 
 
-function Login() {
-    const navigate = useNavigate();
+function Login(props) {
     const [password, setPassword] = useState("");
     const [user, setUser] = useState("");
 
     const handleValidation = () => {
+      console.log('chamou')
         if (user === 'felipe' && password === '1234') {
-            console.log(user)
-            navigate('/home')
+          console.log('2');
+          props.setLogado(true);
         }
       };
   
@@ -46,14 +46,14 @@ function Login() {
                     onChange={(event) => setPassword(event.target.value)}
                   />
                 </div>
+                </form>
                 <div  style={{textAlign: 'center'}}>
-                <button type="submit" className="btn btn-primary"
+                <button className="btn btn-primary"
                  style={{marginTop:'2rem'}}
                  onClick={handleValidation}>
                   Submit
                 </button>
                 </div>
-              </form>
             </div>
           </div>
         </div>

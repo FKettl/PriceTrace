@@ -1,13 +1,16 @@
 import './styles.css'
-import { Navbar, Nav } from 'react-bootstrap';
-import { Link } from "react-router-dom";
-import { useState } from 'react';
+import { Navbar, Nav} from 'react-bootstrap';
+import { useEffect } from 'react';
 
 function NavBarComponent(props) {
-  const [conectado, setConectado] = useState(false);
 
-  const conectar = () => setConectado(true);
-  const desconectar = () => setConectado(false);
+  useEffect(() => {
+    }, [props.logadoHeader]);
+
+  const deslogar = () => {
+    props.setLogado(false)
+    props.setLogadoHeader(false)
+  }
 
   return (
     <Navbar
@@ -21,23 +24,24 @@ function NavBarComponent(props) {
       <Navbar.Toggle aria-controls="responsive-navbar-na" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="align-items-end px-3">
-          <Link to={`/home`}>Home</Link>
-          {conectado ?
-          <Link to={`/profile`}>Profile</Link>
+          <Nav.Link onClick={props.tirarLoginPage}>Home</Nav.Link>
+          {props.logadoHeader == true ?
+          <Nav.Link>Profile</Nav.Link>
           : 
           <></>}
         </Nav>
         <Nav className="mr-auto align-items-end px-3">
         </Nav>
-        {conectado ?
+        {props.logadoHeader == true ?
         <Nav className="ml-auto align-items-end px-3">
-          <Link onClick={desconectar} className="pl-4">Desconectar</Link>
+          <Nav.Link onClick={deslogar} className="pl-4">Desconectar</Nav.Link>
         </Nav>
         :
         <Nav className="ml-auto align-items-end px-3">
-          <Link onClick={props.homeNeeded} to={`/login`}
+          <Nav.Link
+          onClick={props.chamarLoginPage}
           className="pl-4" 
-          >Login</Link>
+          >Login</Nav.Link>
         </Nav>
         }
       </Navbar.Collapse>

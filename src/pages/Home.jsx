@@ -1,11 +1,25 @@
 import NavBarComponent from '../components/NavBarComponent';
 import ItemCard from '../components/ItemCard';
 import Search from '../components/Search';
+import { useState, useEffect } from "react";
+import Login from './Login';
 
 
 function Home() {
+  const [logado, setLogado] = useState(false);
+  const [logadoHeader, setLogadoHeader] = useState(false);
+  const [loginPage, setLoginPage] = useState(false);;
+  const chamarLoginPage = () => setLoginPage(true);
+  const tirarLoginPage = () => setLoginPage(false);
 
-  let produtos = [{
+  useEffect(() => {
+    setLoginPage(false);
+    if (logado == true){
+      setLogadoHeader(true);
+    }
+  }, [logado]);
+
+  const produtos = [{
     "key": 1,
     "name": "Air pod",
     "price": 144.99,
@@ -55,7 +69,17 @@ function Home() {
   ] 
 
   return (
-    <div className='flex flex-col'>
+    <>
+    <NavBarComponent logadoHeader={logadoHeader} chamarLoginPage={chamarLoginPage} tirarLoginPage={tirarLoginPage} 
+    setLogado={setLogado} setLogadoHeader={setLogadoHeader}/>
+      <div className='flex flex-col'>
+        
+        
+      {loginPage ?
+      <Login setLogado={setLogado}
+      setLoginPage={setLoginPage} ></Login>
+      :
+      <>
       <div className='text-7xl m-auto pt-4 pb-4'> Procure as melhores ofertas </div>
       <Search />
       <div className='grid grid-cols-4'>
@@ -63,7 +87,10 @@ function Home() {
           <ItemCard name={item.name} price={item.price} image={item.image}/>
         )})}
       </div>
-    </div>
+        </>
+      }
+      </div>
+    </>
   )
 }
 
