@@ -27,7 +27,8 @@ function ItemCard (props) {
                 <Button style={{marginTop: '0.5rem', marginBottom: '0.5rem', backgroundColor: '#1f97c2'}} onClick={showModal}>Veja mais</Button>
                 </div>
             </Card.Body>
-            {isOpen && <ItemModal name={props.name} price={props.price} closeModal={closeModal} isOpen={isOpen} />}
+            {isOpen && <ItemModal name={props.name} price={props.price}
+             closeModal={closeModal} isOpen={isOpen} link={props.link} description={props.description}/>}
         </Card>
     )
 }
