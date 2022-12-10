@@ -7,7 +7,7 @@ function Login(props) {
     const [user, setUser] = useState("");
 
     const handleValidation = () => {
-        if (user === 'felipe' && password === '1234') {
+        if (user === 'user' && password === '1234') {
           props.setUserName(user);
           props.setLogado(true);
         }
