@@ -7,16 +7,18 @@ function Login(props) {
     const [user, setUser] = useState("");
 
     const handleValidation = () => {
-      console.log('chamou')
-        if (user === 'felipe' && password === '1234') {
-          console.log('2');
+        if (user === 'user' && password === '1234') {
+          props.setUserName(user);
           props.setLogado(true);
         }
       };
   
     return (
-        <div style={{marginTop: '15rem'}}>
+        <div style={{marginTop: '10rem'}}>
         <div className="container">
+        <div style={{justifyContent: 'center', alignItems:'center', display:'flex', marginBottom: '4rem'}}>
+          <h1>Login</h1>
+        </div>
           <div className="row d-flex justify-content-center">
             <div className="col-md-4">
               <form id="loginform">

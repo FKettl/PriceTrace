@@ -8,8 +8,14 @@ function NavBarComponent(props) {
     }, [props.logadoHeader]);
 
   const deslogar = () => {
-    props.setLogado(false)
-    props.setLogadoHeader(false)
+    props.setLogado(false);
+    props.setLogadoHeader(false);
+    props.setProfilePage(false)
+  }
+
+  const returnHome = () => {
+    props.setLoginPage(false);
+    props.setProfilePage(false);
   }
 
   return (
@@ -24,9 +30,9 @@ function NavBarComponent(props) {
       <Navbar.Toggle aria-controls="responsive-navbar-na" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="align-items-end px-3">
-          <Nav.Link onClick={props.tirarLoginPage}>Home</Nav.Link>
+          <Nav.Link onClick={() => {returnHome()}}>Home</Nav.Link>
           {props.logadoHeader == true ?
-          <Nav.Link>Profile</Nav.Link>
+          <Nav.Link onClick={() => {props.setProfilePage(true)}}>Profile</Nav.Link>
           : 
           <></>}
         </Nav>
@@ -34,12 +40,12 @@ function NavBarComponent(props) {
         </Nav>
         {props.logadoHeader == true ?
         <Nav className="ml-auto align-items-end px-3">
-          <Nav.Link onClick={deslogar} className="pl-4">Desconectar</Nav.Link>
+          <Nav.Link onClick={() => {deslogar()}} className="pl-4">Desconectar</Nav.Link>
         </Nav>
         :
         <Nav className="ml-auto align-items-end px-3">
           <Nav.Link
-          onClick={props.chamarLoginPage}
+          onClick={() => {props.setLoginPage(true)}}
           className="pl-4" 
           >Login</Nav.Link>
         </Nav>
