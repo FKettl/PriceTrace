@@ -21,6 +21,7 @@
     "react-cool-onclickoutside": "^1.7.0",
     "react-dom": "^18.2.0",
     "react-fontawesome": "^1.7.1",
+    "recharts": "^2.2.0",
     "web3": "1.2.2"
   },
   "devDependencies": {

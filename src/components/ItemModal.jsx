@@ -1,6 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import PerfilCard from './perfilCard';
+import Graphic from './Graphic';
 
 function ItemModal (props) {
   return (
@@ -15,11 +16,11 @@ function ItemModal (props) {
           <h5>Description</h5>
           <h8>{props.description}</h8>
           <h5 style={{marginTop:'1rem'}}>Price History</h5>
+          <Graphic />
         </Modal.Body>
         <Modal.Footer>
-          <div style={{ display: 'flex',  justifyContent: 'space-between'}} ></div>
-            <PerfilCard  storeUrl={props.storeUrl} storeName={props.storeName}></PerfilCard>
-            <div style={{width: 'auto', minWidth:'18rem'}}></div>
+            <PerfilCard storeUrl={props.storeUrl} storeName={props.storeName}></PerfilCard>
+            <div style={{width: 'auto', minWidth:'20rem'}}></div>
             <Button variant="secondary" onClick={props.closeModal}>
                 Close
             </Button>

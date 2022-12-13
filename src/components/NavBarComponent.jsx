@@ -19,10 +19,37 @@ function NavBarComponent(props) {
   }
   const returnProduct = () => {
     props.setStatus(state => ({
-      logadoHeader: falso,
+      logadoHeader: props.getState.logadoHeader,
       profilePage: false,
       loginPage:false,
       pricePage:true,
+      newprodPage:false
+    }));
+  }
+  const returnLoginPage = () => {
+    props.setStatus(state => ({
+      logadoHeader: props.getState.logadoHeader,
+      profilePage: false,
+      loginPage:true,
+      pricePage:false,
+      newprodPage:false
+    }));
+  }
+  const returnNewprodPage = () => {
+    props.setStatus(state => ({
+      logadoHeader: props.getState.logadoHeader,
+      profilePage: false,
+      loginPage:false,
+      pricePage:false,
+      newprodPage:true
+    }));
+  }
+  const returnProfilePage = () => {
+    props.setStatus(state => ({
+      logadoHeader: props.getState.logadoHeader,
+      profilePage: true,
+      loginPage:false,
+      pricePage:false,
       newprodPage:false
     }));
   }
@@ -39,15 +66,15 @@ function NavBarComponent(props) {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="align-items-end px-3">
           <Nav.Link onClick={() => {returnHome()}}>Home</Nav.Link>
-          <Nav.Link onClick={() => {props.setStatus(state=>({pricePage:true}))}}>Send price history</Nav.Link>
+          <Nav.Link onClick={() => {returnProduct()}}>Send price history</Nav.Link>
           {props.getState.existsStore == false?
-          <Nav.Link onClick={() => {props.setStatus(state=>({loginPage:true}))}}>Create store account</Nav.Link>
+          <Nav.Link onClick={() => {returnLoginPage()}}>Create store account</Nav.Link>
           :
-          <Nav.Link onClick={() => {props.setStatus(state=>({newprodPage:true}))}}>Add product</Nav.Link>
+          <Nav.Link onClick={() => {returnNewprodPage()}}>Add product</Nav.Link>
          
           }
           {props.getState.logadoHeader == true ?
-          <Nav.Link onClick={() => {props.setStatus(state=>({profilePage:true}))}}>Profile</Nav.Link>
+          <Nav.Link onClick={() => {returnProfilePage()}}>Profile</Nav.Link>
           : 
           <></>}
         </Nav>
