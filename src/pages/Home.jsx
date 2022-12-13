@@ -30,7 +30,7 @@ class Home extends React.Component {
     };
     this.componentDidMount = this.componentDidMount.bind(this);
     this.setState = this.setState.bind(this);
-    
+    //instance.methods.getUserStoreById ??
   }
   async componentDidMount() {
 
@@ -57,6 +57,9 @@ class Home extends React.Component {
       l = 1;
     }
     var store = await instance.methods.getUserStore(accounts[0]).call({from: web3.eth.accounts[0], gas:3000000});
+    //console.log("AQUI");
+    //console.log(instance.methods.getUserStoreById(0).call({from: web3.eth.accounts[0], gas:3000000}));
+    //console.log("AQUI");
     console.log(store);
     if(store[1] !== ""){
       this.setState({storeid:store[0], storename:store[1], existsStore:true});
@@ -79,6 +82,7 @@ class Home extends React.Component {
   render() {
     return (
       <>
+      {console.log(this.state)}
         <NavBarComponent setStatus={this.setState} getState={this.state}
         />
         <div className='flex flex-col'>
@@ -103,7 +107,9 @@ class Home extends React.Component {
                   <div className='grid grid-cols-4'>
                     {this.state.produtos.map(item => {
                       return (
-                        <ItemCard name={item[1]} price={item[1]}
+                        <ItemCard name={item[1]} price={item[2]} storeId={item['store_id']} 
+                        user={this.state.account[0]}
+                        getUserStoreById = {this.state.priceInstance.methods.getUserStoreById}
                           link={item[6]} image={null} description={item[5]} />
                       )
                     })}

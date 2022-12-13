@@ -13,7 +13,6 @@ class Profile extends React.Component {
      
   }
   
-
   render (){ return (
     <><div  style={{flex:1}}>
         <div style={{width:'auto', height:'10rem'}}></div>
@@ -24,6 +23,7 @@ class Profile extends React.Component {
         </div>
         <div style={{justifyContent: 'center', alignItems:'center', display:'flex', marginTop: '2rem'}}>
         <h1 style={{color:'#1f97c2'}}>Conta {this.props.data.account[0]}</h1>
+        
             </div>
         <div style={{justifyContent: 'center', alignItems:'center', display:'flex', marginBottom: '4rem'}}>
             <a>Level: {this.props.data.level}</a>

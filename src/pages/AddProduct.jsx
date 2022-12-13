@@ -28,6 +28,7 @@ class AddProduct extends React.Component {
   render (){ return (
     <div style={{marginTop: '10rem'}}>
     <div className="container">
+    <h1>Add new product to your store</h1>
     <div style={{justifyContent: 'center', alignItems:'center', display:'flex', marginBottom: '4rem'}}>
       <h1>Add new product to your store</h1>
       <p>Remember to put the affiliated link to our platform as the URL</p>
