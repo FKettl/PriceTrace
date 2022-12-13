@@ -18,7 +18,7 @@ class Home extends React.Component {
       web3: null,
       account: null,
       level: 0,
-      logadoHeader: true,
+      logadoHeader: false,
       profilePage: false,
       loginPage: false,
       pricePage: false,
