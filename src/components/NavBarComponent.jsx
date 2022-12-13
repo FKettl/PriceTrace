@@ -5,17 +5,17 @@ import { useEffect } from 'react';
 function NavBarComponent(props) {
 
   useEffect(() => {
-    }, [props.logadoHeader]);
+    }, [props.getState.logadoHeader]);
 
-  const deslogar = () => {
-    props.setLogado(false);
-    props.setLogadoHeader(false);
-    props.setProfilePage(false)
-  }
 
   const returnHome = () => {
-    props.setLoginPage(false);
-    props.setProfilePage(false);
+    props.setStatus(state => ({
+      logadoHeader: true,
+      profilePage: false,
+      loginPage:false,
+      pricePage:false,
+      newprodPage:false
+    }));
   }
 
   return (
@@ -31,25 +31,21 @@ function NavBarComponent(props) {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="align-items-end px-3">
           <Nav.Link onClick={() => {returnHome()}}>Home</Nav.Link>
-          {props.logadoHeader == true ?
-          <Nav.Link onClick={() => {props.setProfilePage(true)}}>Profile</Nav.Link>
+          <Nav.Link onClick={() => {props.setStatus(state=>({pricePage:true}))}}>Send price history</Nav.Link>
+          {props.getState.existsStore == false?
+          <Nav.Link onClick={() => {props.setStatus(state=>({loginPage:true}))}}>Create store account</Nav.Link>
+          :
+          <Nav.Link onClick={() => {props.setStatus(state=>({newprodPage:true}))}}>Add product</Nav.Link>
+         
+          }
+          {props.getState.logadoHeader == true ?
+          <Nav.Link onClick={() => {props.setStatus(state=>({profilePage:true}))}}>Profile</Nav.Link>
           : 
           <></>}
         </Nav>
         <Nav className="mr-auto align-items-end px-3">
         </Nav>
-        {props.logadoHeader == true ?
-        <Nav className="ml-auto align-items-end px-3">
-          <Nav.Link onClick={() => {deslogar()}} className="pl-4">Desconectar</Nav.Link>
-        </Nav>
-        :
-        <Nav className="ml-auto align-items-end px-3">
-          <Nav.Link
-          onClick={() => {props.setLoginPage(true)}}
-          className="pl-4" 
-          >Login</Nav.Link>
-        </Nav>
-        }
+        
       </Navbar.Collapse>
     </Navbar>
   )

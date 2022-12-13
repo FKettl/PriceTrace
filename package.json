@@ -14,11 +14,14 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@radix-ui/react-dialog": "1.0.2",
     "bootstrap": "^5.2.2",
+    "ganache-core": "^2.13.2",
+    "history": "4.10.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.6.0",
     "react-cool-onclickoutside": "^1.7.0",
     "react-dom": "^18.2.0",
-    "react-fontawesome": "^1.7.1"
+    "react-fontawesome": "^1.7.1",
+    "web3": "1.2.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.24",

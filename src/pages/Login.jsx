@@ -1,66 +1,74 @@
 
-import { useState } from "react";
+import React from "react";
 
 
-function Login(props) {
-    const [password, setPassword] = useState("");
-    const [user, setUser] = useState("");
+class StoreAccount extends React.Component {
+  constructor(props) {
 
-    const handleValidation = () => {
-        if (user === 'user' && password === '1234') {
-          props.setUserName(user);
-          props.setLogado(true);
-        }
-      };
-  
-    return (
-        <div style={{marginTop: '10rem'}}>
-        <div className="container">
-        <div style={{justifyContent: 'center', alignItems:'center', display:'flex', marginBottom: '4rem'}}>
-          <h1>Login</h1>
-        </div>
-          <div className="row d-flex justify-content-center">
-            <div className="col-md-4">
-              <form id="loginform">
-                <div className="form-group">
-                  <label>Email address</label>
-                  <input
-                    type="Username"
-                    className="form-control"
-                    style={{marginTop:'1rem'}}
-                    id="Username"
-                    name="Username"
-                    aria-describedby="Username"
-                    placeholder="Enter username"
-                    onChange={(event) => setUser(event.target.value)}
-                  />
-                </div>
-                <div className="form-group">
-                  <label
-                   style={{marginTop:'1rem'}}
-                  >Password</label>
-                  <input
-                    type="password"
-                    style={{marginTop:'1rem'}}
-                    className="form-control"
-                    id="exampleInputPassword1"
-                    placeholder="Password"
-                    onChange={(event) => setPassword(event.target.value)}
-                  />
-                </div>
-                </form>
-                <div  style={{textAlign: 'center'}}>
-                <button className="btn btn-primary"
-                 style={{marginTop:'2rem'}}
-                 onClick={handleValidation}>
-                  Submit
-                </button>
-                </div>
+      super(props);
+      this.states={
+        "url":"",
+        "name":""
+      }
+      this.createStore = this.createStore.bind(this);
+  }
+
+  createStore = async () => {
+    let a = await this.props.data.priceInstance.methods.createStore(this.state.name, this.state.url, this.props.data.account[0]).send({from : this.props.data.account[0]});
+    console.log(a);
+};
+
+
+  render (){ return (
+    <div style={{marginTop: '10rem'}}>
+    <div className="container">
+    <div style={{justifyContent: 'center', alignItems:'center', display:'flex', marginBottom: '4rem'}}>
+      <h1>Create a Store for your account</h1>
+    </div>
+      <div className="row d-flex justify-content-center">
+        <div className="col-md-4">
+          <form id="loginform">
+            <div className="form-group">
+              <label>Online store URL</label>
+              <input
+                type="url"
+                className="form-control"
+                style={{marginTop:'1rem'}}
+                id="url"
+                name="url"
+                aria-describedby="url"
+                placeholder="Enter url"
+                onChange={(event) => this.setState({url:event.target.value})}
+              />
             </div>
-          </div>
+            <div className="form-group">
+              <label
+               style={{marginTop:'1rem'}}
+              >Name</label>
+              <input
+                type="name"
+                style={{marginTop:'1rem'}}
+                className="form-control"
+                id="exampleInputPassword1"
+                placeholder="Store name"
+                onChange={(event) => this.setState({name:event.target.value})}
+              />
+            </div>
+            </form>
+            <div  style={{textAlign: 'center'}}>
+            <button className="btn btn-primary"
+             style={{marginTop:'2rem'}}
+             onClick={this.createStore}>
+              Submit
+            </button>
+            </div>
         </div>
       </div>
-    )
-  }
-  
-  export default Login
+    </div>
+  </div>
+)}
+}
+export default StoreAccount;
+
+
+

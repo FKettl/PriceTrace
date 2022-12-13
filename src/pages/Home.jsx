@@ -1,121 +1,119 @@
 import NavBarComponent from '../components/NavBarComponent';
 import ItemCard from '../components/ItemCard';
 import Search from '../components/Search';
-import { useState, useEffect } from "react";
-import Login from './Login';
+import React from "react";
+import StoreAccount from './Login';
 import Profile from './Profile';
+import SendPrice from './SendPrices';
+import Web3 from "web3";
+import PriceTraceV1 from "../../truffle/client/src/contracts/PriceTraceV1.json";
+import AddProduct from './AddProduct';
+import regeneratorRuntime from "regenerator-runtime";
 
+class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      priceInstance: null,
+      web3: null,
+      account: null,
+      level: 0,
+      logadoHeader: true,
+      profilePage: false,
+      loginPage: false,
+      pricePage: false,
+      existsStore:false,
+      newprodPage:false,
+      storename: "",
+      storeid:-1,
+      produtos: []
+    };
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.setState = this.setState.bind(this);
+    
+  }
+  async componentDidMount() {
 
-function Home() {
-  const [logado, setLogado] = useState(false);
-  const [logadoHeader, setLogadoHeader] = useState(false);
-  const [loginPage, setLoginPage] = useState(false);
-  const [profilePage, setprofilePage] = useState(false);
-  const [userName, setUserName] = useState('');
-
-  useEffect(() => {
-    setLoginPage(false);
-    if (logado == true){
-      setLogadoHeader(true);
+    if (!window.location.hash) {
+      window.location = window.location + '#loaded';
+      window.location.reload();
     }
-  }, [logado]);
-  const loremIpsum = 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.'
-  const produtos = [{
-    "key": 1,
-    "name": "Air pod",
-    "price": 144.99,
-    'image': './assets/airpod',
-    'link': '//youtube.com',
-    'description': loremIpsum
-  }, {
-    "key": 2,
-    "name": "Yellow Phone",
-    "price": 75.00,
-    'image': './assets/phone.jpg',
-    'link': '//youtube.com',
-    'description': loremIpsum
-  }, {
-    "key": 3,
-    "name": "Camera",
-    "price": 749.99,
-    'image': './assets/photo',
-    'link': '//youtube.com',
-    'description': loremIpsum
-  }, {
-    "key": 4,
-    "name": "Devpulse",
-    "price": 4.99,
-    'image': './assets/airpod',
-    'link': '//youtube.com',
-    'description': loremIpsum
-  }, {
-    "key": 5,
-    "name": "Linklinks",
-    "price": 14.99,
-    'image': '../assets/phone',
-    'link': '//youtube.com',
-    'description': loremIpsum
-  }, {
-    "key": 6,
-    "name": "Linklinks",
-    "price": 14.99,
-    'image': '../assets/photo',
-    'link': '//youtube.com',
-    'description': loremIpsum
-  }, {
-    "key": 7,
-    "name": "Devpulse",
-    "price": 4.99,
-    'image': './assets/photo',
-    'link': '//youtube.com',
-    'description': loremIpsum
-  }, {
-    "key": 8,
-    "name": "Linklinks",
-    "price": 14.99,
-    'image': '../assets/photo',
-    'link': '//youtube.com',
-    'description': loremIpsum
-  }, {
-    "key": 9,
-    "name": "Linklinks",
-    "price": 14.99,
-    'image': '../asse<>ts/photo',
-    'link': '//youtube.com',
-    'description': loremIpsum
-  },
+    const web3 = new Web3(Web3.givenProvider || "ws://localhost:8545", null, { transactionConfirmationBlocks: 1 });
+    const accounts = await web3.eth.getAccounts();
+    const networkId = await web3.eth.net.getId();
+    const deployedNetwork = PriceTraceV1.networks[networkId];
+    const instance = new web3.eth.Contract(
+      PriceTraceV1.abi,
+      deployedNetwork.address
+    );
 
     
-  ] 
-  return (
-    <>
-    <NavBarComponent logadoHeader={logadoHeader} setLoginPage={setLoginPage} 
-    setLogado={setLogado} setProfilePage={setprofilePage} setLogadoHeader={setLogadoHeader}
-    />
-      <div className='flex flex-col'>
-      {loginPage ?
-      <Login setLogado={setLogado}
-      setLoginPage={setLoginPage}
-      setUserName={setUserName} ></Login>
-      :
-      profilePage ? 
-      <><Profile userName={userName}/>
-      </>
-      :
-      <>
-      <div className='text-7xl m-auto pt-4 pb-4'> Procure as melhores ofertas </div>
-      <Search />
-      <div className='grid grid-cols-4'>
-        {produtos.map(item => {return (
-          <ItemCard name={item.name} price={item.price}
-          link={item.link} image={item.image} description={item.description}/>
-        )})}
-      </div>
-      </>
-      }
-      </div>
-    </>
-  )
-}
+    var l = -1
+    l = await instance.methods.getUser(accounts[0]).call({from: web3.eth.accounts[0], gas:3000000});
+    
+    if(parseInt(l[0]) == 0){
+      let a = await instance.methods.createUser(accounts[0]).send({from: accounts[0]});
+      console.log("criando novamente", a);
+      l = 1;
+    }
+    var store = await instance.methods.getUserStore(accounts[0]).call({from: web3.eth.accounts[0], gas:3000000});
+    console.log(store);
+    if(store[1] !== ""){
+      this.setState({storeid:store[0], storename:store[1], existsStore:true});
+    }
+    var p = await instance.methods.getProducts().call({from: accounts[0], gas:3000000});
+    this.setState({
+      priceInstance: instance,
+      web3: web3,
+      account: accounts,
+      level: l,
+      produtos:p
+    });
+    console.log(p);
+    window.addEventListener('load', this.handleLoad);
+    
+  }
 
-export default Home
+  
+
+  render() {
+    return (
+      <>
+        <NavBarComponent setStatus={this.setState} getState={this.state}
+        />
+        <div className='flex flex-col'>
+          {this.state.loginPage ?
+            <StoreAccount data={this.state} ></StoreAccount>
+            :
+            this.state.profilePage ?
+              <><Profile data={this.state} />
+              </>
+              :
+              this.state.pricePage ?
+                <><SendPrice data={this.state} />
+                </>
+                :
+                this.state.newprodPage ?
+                <><AddProduct data={this.state} />
+                </>
+                :
+                <>
+                  <div className='text-7xl m-auto pt-4 pb-4'> Procure as melhores ofertas </div>
+                  <Search />
+                  <div className='grid grid-cols-4'>
+                    {this.state.produtos.map(item => {
+                      return (
+                        <ItemCard name={item[1]} price={item[1]}
+                          link={item[6]} image={null} description={item[5]} />
+                      )
+                    })}
+                  </div>
+                </>
+          }
+        </div>
+      </>
+    );
+  }
+
+}
+export default Home;
