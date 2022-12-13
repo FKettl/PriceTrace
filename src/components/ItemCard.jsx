@@ -9,7 +9,12 @@ function ItemCard (props) {
 
     const closeModal = () => setIsOpen(false);
     const showModal = () => setIsOpen(true);
-
+    //const storeNameandUrl = getUserStoreById(props.storeId);
+    var storeNameandUrl = ['Name', 'https://www.youtube.com'];
+    {console.log("AQUI")
+        console.log(props.getUserStoreById(1).call({from: props.user, gas:3000000}))
+        console.log("AQUI")
+    }
     return (
         /*<Card className="w-10">
             <button onClick={() => setIsOpen(true)} className='border border-radiu w-80 h-40 mt-10 ml-10'>
@@ -18,7 +23,6 @@ function ItemCard (props) {
             </button>
         </Card>*/
         <Card className='cardContainer'>
-            
             <Card.Body>
                 <Card.Img className='cardImg' src={props.image} />
                 <div style={{textAlign: 'center', marginTop: '1rem'}}>
@@ -27,8 +31,9 @@ function ItemCard (props) {
                 <Button style={{marginTop: '0.5rem', marginBottom: '0.5rem', backgroundColor: '#1f97c2'}} onClick={showModal}>Veja mais</Button>
                 </div>
             </Card.Body>
-            {isOpen && <ItemModal name={props.name} price={props.price}
-             closeModal={closeModal} isOpen={isOpen} link={props.link} description={props.description}/>}
+            {isOpen && <ItemModal name={props.name} price={props.price} closeModal={closeModal}
+             isOpen={isOpen} link={props.link} storeName={storeNameandUrl[0]} storeUrl={storeNameandUrl[1]}
+              description={props.description}/>}
         </Card>
     )
 }

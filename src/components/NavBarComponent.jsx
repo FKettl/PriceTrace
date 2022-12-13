@@ -17,7 +17,15 @@ function NavBarComponent(props) {
       newprodPage:false
     }));
   }
-
+  const returnProduct = () => {
+    props.setStatus(state => ({
+      logadoHeader: falso,
+      profilePage: false,
+      loginPage:false,
+      pricePage:true,
+      newprodPage:false
+    }));
+  }
   return (
     <Navbar
       collapseOnSelect
