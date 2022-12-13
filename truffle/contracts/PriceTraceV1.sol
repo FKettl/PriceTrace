@@ -127,16 +127,6 @@ contract PriceTraceV1 {
         return (user_stores[_add].store_id, user_stores[_add].name);
     }
 
-     function getUserStoreById(uint _id) public view returns (string memory, string memory){
-        for (uint i = 0; i < lastStoreId; i++) {
-          Store storage p = allStores[i];
-          if (p.store_id == _id) {
-            return (allStores[i].name, allStores[i].url);
-          }
-        }
-        return ('', '');
-    }
-
     function createPriceStatus(string memory _name, uint _date, uint _avg_price, uint _categoty, uint _store) public {
         PriceStatus memory price = PriceStatus({
           name: _name,
