@@ -10,7 +10,7 @@ function Badget (props) {
      width: "4rem",
      height: "4rem", borderColor: "black", borderWidth: '0.1rem', verticalAlign:'center',
      justifyContent: 'center', alignItems:'center',  display:'flex' }}>
-        <FontAwesomeIcon  style={{ margin: "auto"}} icon={faImage}/>
+        <img src={new URL(props.imageURL)} />
     </div>
     <a style={{marginTop:'0.3rem'}}>{props.name}</a>
     </div>

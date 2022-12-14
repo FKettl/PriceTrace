@@ -2,14 +2,18 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Badget from "../components/Badget";
 import React from "react";
+import FormProfile from "../components/FormProfile";
 
 
 class Profile extends React.Component {
   constructor(props) {
       super(props);
       this.state = {
-            badgets:[]
+            badgets:[],
+            slevel:0,
+            sid:0
       }
+      this.setState = this.setState.bind(this);
      
   }
   
@@ -22,15 +26,15 @@ class Profile extends React.Component {
             </div>
         </div>
         <div style={{justifyContent: 'center', alignItems:'center', display:'flex', marginTop: '1.5rem'}}>
-        <h1 style={{color:'#5971c6'}}>Conta {this.props.data.storename}</h1>
-        
-            </div>
+        <h1 style={{color:'#5971c6'}}>Search for store profile </h1>
+        <FormProfile datap={this.props.data} data={this.state} setData={this.setState}/>
+        </div>
         <div style={{justifyContent: 'center', alignItems:'center', display:'flex'}}>
-            <a>Level: {this.props.data.level}</a>
+            <a>Level: {this.state.slevel}</a>
         </div>{
             this.props.data.existsStore == true ?
             <div style={{justifyContent: 'center', alignItems:'center', display:'flex', marginBottom: '4rem'}}>
-            <a>ID da sua loja: {this.props.data.storeid}</a>
+            <a>Store ID: {this.state.sid}</a>
         </div>
           : 
           <></>}
@@ -40,7 +44,7 @@ class Profile extends React.Component {
             <a style={{marginLeft: '1rem', marginTop:'0.5rem', fontWeight:'bold'}}>Badgets</a>
             <div style={{display: "flex", flexDirection:'row', flexWrap:'wrap', alignItems:'flex-start'}}>
             {this.state.badgets.map(item => {return (
-            <Badget name={item.name}/>
+            <Badget name={item[0]} imageURL={item[5]}/>
             )})}
             </div>
         </div>

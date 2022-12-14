@@ -14,7 +14,8 @@ function NavBarComponent(props) {
       profilePage: false,
       loginPage:false,
       pricePage:false,
-      newprodPage:false
+      newprodPage:false,
+      nftPage:false
     }));
   }
   const returnProduct = () => {
@@ -23,7 +24,8 @@ function NavBarComponent(props) {
       profilePage: false,
       loginPage:false,
       pricePage:true,
-      newprodPage:false
+      newprodPage:false,
+      nftPage:false
     }));
   }
   const returnLoginPage = () => {
@@ -32,7 +34,8 @@ function NavBarComponent(props) {
       profilePage: false,
       loginPage:true,
       pricePage:false,
-      newprodPage:false
+      newprodPage:false,
+      nftPage:false
     }));
   }
   const returnNewprodPage = () => {
@@ -41,7 +44,8 @@ function NavBarComponent(props) {
       profilePage: false,
       loginPage:false,
       pricePage:false,
-      newprodPage:true
+      newprodPage:true,
+      nftPage:false
     }));
   }
   const returnProfilePage = () => {
@@ -50,7 +54,18 @@ function NavBarComponent(props) {
       profilePage: true,
       loginPage:false,
       pricePage:false,
-      newprodPage:false
+      newprodPage:false,
+      nftPage:false
+    }));
+  }
+  const returnNFTPage = () => {
+    props.setStatus(state => ({
+      logadoHeader: props.getState.logadoHeader,
+      profilePage: false,
+      loginPage:false,
+      pricePage:false,
+      newprodPage:false,
+      nftPage:true
     }));
   }
   return (
@@ -72,10 +87,10 @@ function NavBarComponent(props) {
           <Nav.Link style={{fontSize: '1.5rem', marginLeft:'1rem'}} onClick={() => {returnNewprodPage()}}>Add product</Nav.Link>
          
           }
-          {props.getState.logadoHeader == true ?
+          
           <Nav.Link  style={{fontSize: '1.5rem', marginLeft:'1rem'}} onClick={() => {returnProfilePage()}}>Profile</Nav.Link>
-          : 
-          <></>}
+          <Nav.Link  style={{fontSize: '1.5rem', marginLeft:'1rem'}} onClick={() => {returnNFTPage()}}>add NFT test</Nav.Link>
+         
         </Nav>
         <Nav className="mr-auto align-items-end px-3">
         </Nav>

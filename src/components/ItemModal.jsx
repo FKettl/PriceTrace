@@ -1,6 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import PerfilCard from './perfilCard';
+import PerfilCard from './PerfilCard';
 import Graphic from './Graphic';
 
 function ItemModal (props) {
@@ -16,10 +16,10 @@ function ItemModal (props) {
           <h5 style={{fontWeight:'500'}}>Description</h5>
           <h6 style={{marginTop:"1.5rem"}}>{props.description}</h6>
           <h5 style={{marginTop:'1.5rem', fontWeight:'500'}}>Price History</h5>
-          <Graphic />
+          <Graphic data={props.state} store={props.storeid}/>
         </Modal.Body>
         <Modal.Footer>
-            <PerfilCard storeUrl={props.storeUrl} storeName={props.storeName}></PerfilCard>
+            <PerfilCard setState={props.setState} storeUrl={props.storeLevel} storeName={props.storeName}></PerfilCard>
             <div style={{width: 'auto', minWidth:'20rem'}}></div>
             <Button variant="secondary" onClick={props.closeModal}>
                 Close

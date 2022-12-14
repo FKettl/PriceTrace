@@ -18,16 +18,11 @@ contract PriceTraceV1 {
         string name;
         string url;
         uint store_id;
-        uint user_id;
-    }
-
-    struct User {
         address userAddress;
         uint level;
-        uint id_user;
     }
 
-
+    
     struct Prize {
         uint prize_id;
         string name;
@@ -64,19 +59,16 @@ contract PriceTraceV1 {
     Category[] public allCategories;
     Product[] public allProducts;
 
-    uint public lastUserId;
+    
     uint public lastPriceStatusId;
     uint public lastStoreId;
     uint public lastPrizeId;
     uint public lastCategoryId;
     uint public lastProductId;
-    mapping(address => User) users;
     mapping(address => Store) user_stores;
+    mapping(uint => Store) byid_stores;
 
-    function getNewUserId() public returns (uint) {
-        return lastUserId++;
-    }
-
+    
     function getNewPriceStatusId() public returns (uint) {
         return lastPriceStatusId++;
     }
@@ -99,29 +91,7 @@ contract PriceTraceV1 {
     }
 
 
-    function createUser(address _add) public returns (uint){
-        if(users[_add].userAddress != _add){
-            User memory user = User({
-                level: 1,
-                userAddress: _add,
-                id_user: getNewUserId()
-            });
-        
-            users[_add] = user;
-            return user.level;
-        } else {
-            return users[_add].level;
-        }
-        
-   
-    }
-
-    function getUser(address _add) public view returns (uint){
-        if(users[_add].userAddress != _add){
-            return 0;
-        }
-        return users[_add].level;
-    }
+    
 
     function getUserStore(address _add) public view returns (uint, string memory){
         return (user_stores[_add].store_id, user_stores[_add].name);
@@ -140,16 +110,18 @@ contract PriceTraceV1 {
     }
 
     function createStore(string memory _name, string memory _url, address _add) public {
-        
+        uint store_id = getNewStoreId();
         Store memory store = Store({
             name: _name,
             url: _url,
-            user_id: users[_add].id_user,
-            store_id: getNewStoreId()
+            level: 1,
+            userAddress: _add,
+            store_id: store_id
         });
         allStores.push(store);
         user_stores[_add] = store;
-        
+        byid_stores[store_id] = store;
+         
     }
 
     function createPrize(string memory _name, string memory _description, uint _date) public {
@@ -193,13 +165,19 @@ contract PriceTraceV1 {
         allProducts.push(product);
     }
 
-    function getProducts() public view returns (Product[] memory){
+    function getProducts() public view returns (Product[] memory, Store[] memory){
       Product[] memory id = new Product[](lastProductId);
+      Store[] memory id_store = new Store[](lastProductId);
       for (uint i = 0; i < lastProductId; i++) {
           Product storage p = allProducts[i];
           id[i] = p;
+          id_store[i] = byid_stores[p.store_id];
       }
-      return id;
+      return (id, id_store);
+    }
+
+    function getStoreById(uint _id) public view returns (Store memory){
+      return byid_stores[_id];
     }
   
 
@@ -220,16 +198,16 @@ contract PriceTraceV1 {
 
     }
 
-    function getAveragePriceByStore(uint _store, uint _start_date) public view returns (uint, uint[] memory, string[] memory, uint[] memory, uint[] memory, uint[] memory) {
+    function getAveragePriceByStore(uint _store, uint _start_date) public view returns (uint[] memory, string[] memory, uint[] memory, uint[] memory, uint[] memory) {
 
-        uint average_return;
+      
         uint[] memory status_id = new uint[](allPriceStatus.length);
         string[] memory name = new string[](allPriceStatus.length);
         uint[] memory date= new uint[](allPriceStatus.length);
         uint[] memory avg_price = new uint[](allPriceStatus.length);
         uint[] memory category_id = new uint[](allPriceStatus.length);
 
-        uint total;
+        uint total = 0;
         for (uint i = 0; i < allPriceStatus.length; i++) {
             if( allPriceStatus[i].store_id == _store && allPriceStatus[i].date >= _start_date) {
                 status_id[total] = allPriceStatus[i].status_id;
@@ -237,13 +215,11 @@ contract PriceTraceV1 {
                 date[total] = allPriceStatus[i].date;
                 avg_price[total] = allPriceStatus[i].avg_price;
                 category_id[total] = allPriceStatus[i].category_id;
-                average_return = average_return + allPriceStatus[i].avg_price;
                 total = total + 1;
 
             }
         }
-        average_return = average_return/total;
-        return (average_return, status_id, name, date, avg_price, category_id);
+        return (status_id, name, date, avg_price, category_id);
 
     }
 

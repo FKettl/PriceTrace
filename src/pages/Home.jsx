@@ -7,9 +7,10 @@ import Profile from './Profile';
 import SendPrice from './SendPrices';
 import Web3 from "web3";
 import PriceTraceV1 from "../../truffle/client/src/contracts/PriceTraceV1.json";
+import Prize from "../../truffle/client/src/contracts/Prize.json";
 import AddProduct from './AddProduct';
 import regeneratorRuntime from "regenerator-runtime";
-
+import NFTtest from './NFTtest';
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -24,6 +25,8 @@ class Home extends React.Component {
       pricePage: false,
       existsStore:false,
       newprodPage:false,
+      nftPage:false,
+      stores:[],
       storename: "",
       storeid:-1,
       produtos: []
@@ -33,7 +36,8 @@ class Home extends React.Component {
     //instance.methods.getUserStoreById ??
   }
   async componentDidMount() {
-
+    // Create a new window
+    
     if (!window.location.hash) {
       window.location = window.location + '#loaded';
       window.location.reload();
@@ -47,15 +51,14 @@ class Home extends React.Component {
       deployedNetwork.address
     );
 
+    const deployedNetwork2 = Prize.networks[networkId];
+    const instanceprize = new web3.eth.Contract(
+      Prize.abi,
+      deployedNetwork2.address
+    );
+
     
-    var l = -1
-    l = await instance.methods.getUser(accounts[0]).call({from: web3.eth.accounts[0], gas:3000000});
-    
-    if(parseInt(l[0]) == 0){
-      let a = await instance.methods.createUser(accounts[0]).send({from: accounts[0]});
-      console.log("criando novamente", a);
-      l = 1;
-    }
+   
     var store = await instance.methods.getUserStore(accounts[0]).call({from: web3.eth.accounts[0], gas:3000000});
     //console.log("AQUI");
     //console.log(instance.methods.getUserStoreById(0).call({from: web3.eth.accounts[0], gas:3000000}));
@@ -67,10 +70,11 @@ class Home extends React.Component {
     var p = await instance.methods.getProducts().call({from: accounts[0], gas:3000000});
     this.setState({
       priceInstance: instance,
+      prizeInstance:instanceprize,
       web3: web3,
       account: accounts,
-      level: l,
-      produtos:p
+      produtos:p[0],
+      stores: p[1]
     });
     console.log(p);
     window.addEventListener('load', this.handleLoad);
@@ -89,6 +93,9 @@ class Home extends React.Component {
           {this.state.loginPage ?
             <StoreAccount data={this.state} ></StoreAccount>
             :
+            this.state.nftPage ?
+            <NFTtest data={this.state}/>
+            :
             this.state.profilePage ?
               <><Profile data={this.state} />
               </>
@@ -106,11 +113,10 @@ class Home extends React.Component {
                   fontSize:'4rem', marginRight:'auto'}}> Search for the best offers </div>
                   <Search />
                   <div className='grid grid-cols-4'>
-                    {this.state.produtos.map(item => {
+                    {this.state.produtos.map((item, key) => {
                       return (
-                        <ItemCard name={item[1]} price={item[2]} storeId={item['store_id']} 
-                        user={this.state.account[0]}
-                        getUserStoreById = {this.state.priceInstance.methods.getUserStoreById}
+                        <ItemCard state={this.state} setState={this.setState} name={item[1]} price={item[2]} storeId={item['store_id']} 
+                        user={this.state.account[0]} storeName={this.state.stores[key][0]} storeLevel={this.state.stores[key][4]}
                           link={item[6]} image={null} description={item[5]} />
                       )
                     })}

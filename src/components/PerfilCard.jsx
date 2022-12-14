@@ -21,7 +21,7 @@ function PerfilCard (props) {
                 <a style={{marginTop: "auto", marginBottom: "auto", marginRight:"0.5rem",
                 marginLeft:'0.5rem'}}>-</a>
                 <Card.Subtitle style={{marginTop: "auto", marginBottom: "auto", marginRight:"auto",
-                marginLeft:'0.5rem'}} className="text-muted">Level 14</Card.Subtitle>
+                marginLeft:'0.5rem'}} className="text-muted">{props.storeUrl}</Card.Subtitle>
             </Card.Body>
         </Card>
         </a>
