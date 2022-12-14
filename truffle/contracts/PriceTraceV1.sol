@@ -50,6 +50,7 @@ contract PriceTraceV1 {
         uint price_date;
         string description;
         string url;
+        string imageurl;
     }
 
     PriceStatus[] public allPriceStatus;
@@ -152,7 +153,7 @@ contract PriceTraceV1 {
         allCategories.push(category);
     }
 
-    function createProduct(string memory _name, uint _price, uint _price_date, string memory _description, string memory _url, address _add) public {
+    function createProduct(string memory _imageurl, string memory _name, uint _price, uint _price_date, string memory _description, string memory _url, address _add) public {
         Product memory product = Product({
             product_id: getNewProductId(),
             name:_name,
@@ -160,7 +161,8 @@ contract PriceTraceV1 {
             store_id:user_stores[_add].store_id,
             price_date: _price_date,
             description:_description,
-            url:_url
+            url:_url,
+            imageurl:_imageurl
         });
         allProducts.push(product);
     }

@@ -13,14 +13,15 @@ class AddProduct extends React.Component {
         "url":"",
         "name":"",
         "description":"",
-        "price":""
+        "price":"",
+        "urlimage":""
       }
       this.createProduct = this.createProduct.bind(this);
   }
 
   createProduct = async () => {
     var unix = Math.round(+new Date()/1000);
-    let a = await this.props.data.priceInstance.methods.createProduct(this.state.name, this.state.price, unix, this.state.description, this.state.url, this.props.data.account[0]).send({from : this.props.data.account[0]});
+    let a = await this.props.data.priceInstance.methods.createProduct(this.state.urlimage, this.state.name, this.state.price, unix, this.state.description, this.state.url, this.props.data.account[0]).send({from : this.props.data.account[0]});
     console.log(a);
 };
 
@@ -79,7 +80,7 @@ class AddProduct extends React.Component {
             <div className="form-group">
               <label
                style={{marginTop:'1rem'}}
-              >URL</label>
+              >URL affiliate link</label>
               <input
                 type="url"
                 style={{marginTop:'0.5rem'}}
@@ -87,6 +88,19 @@ class AddProduct extends React.Component {
                 id="url"
                 placeholder="url"
                 onChange={(event) => this.setState({url:event.target.value})}
+              />
+            </div>
+            <div className="form-group">
+              <label
+               style={{marginTop:'1rem'}}
+              >URL of the image</label>
+              <input
+                type="url2"
+                style={{marginTop:'0.5rem'}}
+                className="form-control"
+                id="url2"
+                placeholder="url2"
+                onChange={(event) => this.setState({urlimage:event.target.value})}
               />
             </div>
             </form>

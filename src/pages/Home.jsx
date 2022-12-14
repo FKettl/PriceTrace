@@ -117,7 +117,7 @@ class Home extends React.Component {
                       return (
                         <ItemCard state={this.state} setState={this.setState} name={item[1]} price={item[2]} storeId={item['store_id']} 
                         user={this.state.account[0]} storeName={this.state.stores[key][0]} storeLevel={this.state.stores[key][4]}
-                          link={item[6]} image={null} description={item[5]} />
+                          link={item[6]} image={null} description={item[5]} imageURL={item[7]} />
                       )
                     })}
                   </div>

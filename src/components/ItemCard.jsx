@@ -18,8 +18,10 @@ function ItemCard (props) {
     return (
         <Card className='cardContainer'>
             <Card.Body>
-            <FontAwesomeIcon style={{width:"4rem", height:"4rem",marginTop: "3rem", marginBottom: "auto", marginRight:"auto",
-                marginLeft:'7rem'}} icon={faBook}/>
+            <div style={{width:"4rem", height:"4rem",marginTop: "3rem", marginBottom: "auto", marginRight:"auto",
+                marginLeft:'7rem'}}>
+            <img src={new URL(props.imageURL)}/>
+            </div>
                 <div style={{textAlign: 'center', marginTop: '1rem'}}>
                 <Card.Title style={{marginTop:'2rem'}}>{props.name}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{props.price}</Card.Subtitle>
