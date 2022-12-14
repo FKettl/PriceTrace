@@ -5,6 +5,9 @@
     height: 2.5rem;
     background: #dddddd;
     border-radius: 10px;
+    height: 30px;
+    background: #bbb9b9;
+    border-radius: 10px;
   }
     
 .search-input {
@@ -58,4 +61,8 @@
   margin-left: 1.5rem;
   margin-right: 1.5rem;
   margin-top: 1rem
+}
+
+.navbar-color {
+  background-color: #bbb9b9
 }
