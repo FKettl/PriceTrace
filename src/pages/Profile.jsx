@@ -19,7 +19,10 @@ class Profile extends React.Component {
   
   render (){ return (
     <><div  style={{flex:1}}>
-        <div style={{width:'auto', height:'5rem'}}></div>
+        <div style={{justifyContent: 'center', alignItems:'center', display:'flex', marginLeft:'10rem'}}>
+        <FormProfile datap={this.props.data} data={this.state} setData={this.setState}/>
+        </div>
+        <div style={{width:'auto', height:'1rem'}}></div>
         <div style={{justifyContent: 'center', alignItems:'center', display:'flex'}}>
             <div style={{display: "flex",  width: "9rem", height: "9rem", borderRadius: "50%", borderColor: "black", borderWidth: '0.1rem' }}>
             <FontAwesomeIcon  style={{ margin: "auto", widht:'4rem', height:'4rem'}} icon={faUser}/>
@@ -27,7 +30,6 @@ class Profile extends React.Component {
         </div>
         <div style={{justifyContent: 'center', alignItems:'center', display:'flex', marginTop: '1.5rem'}}>
         <h1 style={{color:'#5971c6'}}>Search for store profile </h1>
-        <FormProfile datap={this.props.data} data={this.state} setData={this.setState}/>
         </div>
         <div style={{justifyContent: 'center', alignItems:'center', display:'flex'}}>
             <a>Level: {this.state.slevel}</a>
