@@ -46,9 +46,9 @@ class SendPrice extends React.Component {
 
     render() {
         return (
-            <div style={{ marginTop: '10rem' }}>
+            <div style={{ marginTop: '5rem' }}>
                 <div className="container">
-                    <div style={{ justifyContent: 'center', alignItems: 'center', display: 'flex', marginBottom: '4rem' }}>
+                    <div style={{ justifyContent: 'center', alignItems: 'center', display: 'flex', marginBottom: '2rem' }}>
                         <h1>Send Price To Blockchain</h1>
                     </div>
                     <div className="row d-flex justify-content-center">
@@ -109,7 +109,7 @@ class SendPrice extends React.Component {
                             </form>
                             <div style={{ textAlign: 'center' }}>
                                 <button className="btn btn-primary"
-                                    style={{ marginTop: '2rem' }}
+                                    style={{ marginTop: '2rem', background:'#5971c6' }}
                                     onClick={this.sendBlockchain}>
                                     Submit
                                 </button>

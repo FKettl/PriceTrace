@@ -20,10 +20,10 @@ class StoreAccount extends React.Component {
 
 
   render (){ return (
-    <div style={{marginTop: '10rem'}}>
+    <div style={{marginTop: '5rem'}}>
     <div className="container">
     <div style={{justifyContent: 'center', alignItems:'center', display:'flex', marginBottom: '4rem'}}>
-      <h1>Create a Store for your account</h1>
+      <h1>Create a store for your account</h1>
     </div>
       <div className="row d-flex justify-content-center">
         <div className="col-md-4">
@@ -33,7 +33,7 @@ class StoreAccount extends React.Component {
               <input
                 type="url"
                 className="form-control"
-                style={{marginTop:'1rem'}}
+                style={{marginTop:'0.5rem'}}
                 id="url"
                 name="url"
                 aria-describedby="url"
@@ -43,11 +43,11 @@ class StoreAccount extends React.Component {
             </div>
             <div className="form-group">
               <label
-               style={{marginTop:'1rem'}}
+               style={{marginTop:'2rem'}}
               >Name</label>
               <input
                 type="name"
-                style={{marginTop:'1rem'}}
+                style={{marginTop:'0.5rem'}}
                 className="form-control"
                 id="exampleInputPassword1"
                 placeholder="Store name"
@@ -57,7 +57,7 @@ class StoreAccount extends React.Component {
             </form>
             <div  style={{textAlign: 'center'}}>
             <button className="btn btn-primary"
-             style={{marginTop:'2rem'}}
+             style={{marginTop:'2rem', background:'#5971c6'}}
              onClick={this.createStore}>
               Submit
             </button>

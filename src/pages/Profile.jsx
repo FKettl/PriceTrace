@@ -15,22 +15,22 @@ class Profile extends React.Component {
   
   render (){ return (
     <><div  style={{flex:1}}>
-        <div style={{width:'auto', height:'10rem'}}></div>
+        <div style={{width:'auto', height:'5rem'}}></div>
         <div style={{justifyContent: 'center', alignItems:'center', display:'flex'}}>
             <div style={{display: "flex",  width: "9rem", height: "9rem", borderRadius: "50%", borderColor: "black", borderWidth: '0.1rem' }}>
-            <FontAwesomeIcon  style={{ margin: "auto"}} icon={faUser}/>
+            <FontAwesomeIcon  style={{ margin: "auto", widht:'4rem', height:'4rem'}} icon={faUser}/>
             </div>
         </div>
-        <div style={{justifyContent: 'center', alignItems:'center', display:'flex', marginTop: '2rem'}}>
-        <h1 style={{color:'#1f97c2'}}>Conta {this.props.data.account[0]}</h1>
+        <div style={{justifyContent: 'center', alignItems:'center', display:'flex', marginTop: '1.5rem'}}>
+        <h1 style={{color:'#5971c6'}}>Conta {this.props.data.storename}</h1>
         
             </div>
-        <div style={{justifyContent: 'center', alignItems:'center', display:'flex', marginBottom: '4rem'}}>
+        <div style={{justifyContent: 'center', alignItems:'center', display:'flex'}}>
             <a>Level: {this.props.data.level}</a>
         </div>{
             this.props.data.existsStore == true ?
             <div style={{justifyContent: 'center', alignItems:'center', display:'flex', marginBottom: '4rem'}}>
-            <a>Nome da sua loja: {this.props.data.storename}</a>
+            <a>ID da sua loja: {this.props.data.storeid}</a>
         </div>
           : 
           <></>}

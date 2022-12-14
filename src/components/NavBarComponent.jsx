@@ -57,24 +57,23 @@ function NavBarComponent(props) {
     <Navbar
       collapseOnSelect
       expand="md"
-      bg="light"
-      variant="light"
+      style={{backgroundColor: '#e5e5e5'}}
       className="px-4 py-8"
     >
-      <Navbar.Brand> <a style={{color: '#1f97c2'}}>PriceTrace</a> </Navbar.Brand>
+      <Navbar.Brand> <img style={{width:'auto', height: '5rem'}} src="src\assets\Logo.PNG"></img> </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-na" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="align-items-end px-3">
-          <Nav.Link onClick={() => {returnHome()}}>Home</Nav.Link>
-          <Nav.Link onClick={() => {returnProduct()}}>Send price history</Nav.Link>
+          <Nav.Link style={{fontSize: '1.5rem'}} onClick={() => {returnHome()}}>Home</Nav.Link>
+          <Nav.Link style={{fontSize: '1.5rem', marginLeft:'1rem'}} onClick={() => {returnProduct()}}>Send price history</Nav.Link>
           {props.getState.existsStore == false?
-          <Nav.Link onClick={() => {returnLoginPage()}}>Create store account</Nav.Link>
+          <Nav.Link style={{fontSize: '1.5rem' , marginLeft:'1rem'}} onClick={() => {returnLoginPage()}}>Create store account</Nav.Link>
           :
-          <Nav.Link onClick={() => {returnNewprodPage()}}>Add product</Nav.Link>
+          <Nav.Link style={{fontSize: '1.5rem', marginLeft:'1rem'}} onClick={() => {returnNewprodPage()}}>Add product</Nav.Link>
          
           }
           {props.getState.logadoHeader == true ?
-          <Nav.Link onClick={() => {returnProfilePage()}}>Profile</Nav.Link>
+          <Nav.Link  style={{fontSize: '1.5rem', marginLeft:'1rem'}} onClick={() => {returnProfilePage()}}>Profile</Nav.Link>
           : 
           <></>}
         </Nav>

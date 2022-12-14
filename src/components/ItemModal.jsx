@@ -10,12 +10,12 @@ function ItemModal (props) {
     aria-labelledby="contained-modal-title-vcenter"
     centered>
         <Modal.Header closeButton >
-            <Modal.Title>{props.name} -  {props.price}</Modal.Title>
+            <Modal.Title style={{fontSize: '2.5rem'}}>{props.name} -  {props.price}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h5>Description</h5>
-          <h8>{props.description}</h8>
-          <h5 style={{marginTop:'1rem'}}>Price History</h5>
+          <h5 style={{fontWeight:'500'}}>Description</h5>
+          <h6 style={{marginTop:"1.5rem"}}>{props.description}</h6>
+          <h5 style={{marginTop:'1.5rem', fontWeight:'500'}}>Price History</h5>
           <Graphic />
         </Modal.Body>
         <Modal.Footer>
@@ -24,7 +24,7 @@ function ItemModal (props) {
             <Button variant="secondary" onClick={props.closeModal}>
                 Close
             </Button>
-            <Button variant="primary" target="_blank" href={props.link}>
+            <Button variant="primary"  style={{backgroundColor: '#5971c6'}} target="_blank" href={props.link}>
                 Go To
           </Button>
             </Modal.Footer>

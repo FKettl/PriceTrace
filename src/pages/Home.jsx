@@ -102,7 +102,8 @@ class Home extends React.Component {
                 </>
                 :
                 <>
-                  <div className='text-7xl m-auto pt-4 pb-4'> Procure as melhores ofertas </div>
+                  <div className='text-7xl pt-4 pb-4' style={{marginTop:'3rem', marginLeft:'auto',
+                  fontSize:'4rem', marginRight:'auto'}}> Search for the best offers </div>
                   <Search />
                   <div className='grid grid-cols-4'>
                     {this.state.produtos.map(item => {

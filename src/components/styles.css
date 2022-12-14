@@ -2,9 +2,9 @@
     display: flex;
     margin-bottom: auto;
     margin-top: 1.5rem;
-    height: 30px;
-    background: #b61815;
-    border-radius: 20px;
+    height: 2.5rem;
+    background: #dddddd;
+    border-radius: 10px;
   }
     
 .search-input {
@@ -20,9 +20,11 @@
 }
   
 .search-icon {
+  margin-top: 0.25rem;
+  margin-right: 0.5rem;
   float: right;
   color: rgb(0, 0, 0);
-  font-size: small;
+  font-size: large;
 }
   
 .icon-bg {
@@ -35,12 +37,15 @@
 }
 
 .cardContainer {
+  background: #ececec;
   width: 20rem;
+  height: 20rem;
   margin-top: 4rem;
   margin-left: 3rem;
   margin-right: 3rem;
   margin-bottom: 3rem;
-  grid: 1
+  grid: 1;
+  border-radius: 1.5rem
 }
 
 .center {

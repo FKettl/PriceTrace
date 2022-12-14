@@ -26,14 +26,15 @@ class AddProduct extends React.Component {
 
 
   render (){ return (
-    <div style={{marginTop: '10rem'}}>
+    <div style={{marginTop: '5rem'}}>
     <div className="container">
-    <h1>Add new product to your store</h1>
-    <div style={{justifyContent: 'center', alignItems:'center', display:'flex', marginBottom: '4rem'}}>
+    <div style={{justifyContent: 'center', alignItems:'center', display:'flex'}}>
       <h1>Add new product to your store</h1>
-      <p>Remember to put the affiliated link to our platform as the URL</p>
     </div>
-      <div className="row d-flex justify-content-center">
+    <div style={{justifyContent: 'center', alignItems:'center', display:'flex'}}>
+      <p style={{color:'#737373'}}>Remember to put the affiliated link to our platform as the URL</p>
+    </div>
+      <div style={{marginTop:'2.5rem'}} className="row d-flex justify-content-center">
         <div className="col-md-4">
           <form id="loginform">
             <div className="form-group">
@@ -91,7 +92,7 @@ class AddProduct extends React.Component {
             </form>
             <div  style={{textAlign: 'center'}}>
             <button className="btn btn-primary"
-             style={{marginTop:'2rem'}}
+             style={{marginTop:'2rem',  background:'#5971c6'}}
              onClick={this.createProduct}>
               Submit
             </button>
