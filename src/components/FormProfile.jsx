@@ -25,13 +25,12 @@ class FormProfile extends React.Component {
 
 
   render (){ return (
-   
-      <div className="row d-flex justify-content-center">
-        <div className="col-md-4">
+     
+        <div style={{display:'flex', marginBottom: '4rem'}} className="col-md-4">
           <form id="loginform">
             <div className="form-group">
               <label
-               style={{marginTop:'2rem'}}
+               style={{marginTop:'2rem', width:'20rem'}}
               >Name</label>
               <input
                 type="name"
@@ -45,12 +44,11 @@ class FormProfile extends React.Component {
             </form>
             <div  style={{textAlign: 'center'}}>
             <button className="btn btn-primary"
-             style={{marginTop:'2rem', background:'#5971c6'}}
+             style={{background:'#5971c6', marginTop: '4rem', marginLeft:'1rem'}}
              onClick={this.searchStore}>
               Search
             </button>
             </div>
-        </div>
       </div>
    
 )}
