@@ -42,7 +42,7 @@ class AddProduct extends React.Component {
               <input
                 type="name"
                 className="form-control"
-                style={{marginTop:'1rem'}}
+                style={{marginTop:'0.5rem'}}
                 id="name"
                 name="name"
                 aria-describedby="name"
@@ -56,7 +56,7 @@ class AddProduct extends React.Component {
               >Price</label>
               <input
                 type="price"
-                style={{marginTop:'1rem'}}
+                style={{marginTop:'0.5rem'}}
                 className="form-control"
                 id="price"
                 placeholder="price"
@@ -69,7 +69,7 @@ class AddProduct extends React.Component {
               >Description</label>
               <input
                 type="description"
-                style={{marginTop:'1rem'}}
+                style={{marginTop:'0.5rem'}}
                 className="form-control"
                 id="description"
                 placeholder="description"
@@ -82,7 +82,7 @@ class AddProduct extends React.Component {
               >URL</label>
               <input
                 type="url"
-                style={{marginTop:'1rem'}}
+                style={{marginTop:'0.5rem'}}
                 className="form-control"
                 id="url"
                 placeholder="url"
